@@ -16,10 +16,10 @@ async function initMap() {
     });
 
     // The marker, positioned at Uluru
-    const marker = new AdvancedMarkerElement({
+    const marker = new google.maps.Marker({
         map: map,
-        position: position,
-        title: "Food Truck",
+        position: { lat: 37.7550307267667, lng: -122.384530734223 },
+        title: "Food Truck"
     });
 }
 
