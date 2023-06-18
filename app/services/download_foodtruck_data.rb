@@ -5,7 +5,8 @@ class DownloadFoodtruckData
   class << self
 
     def call
-      FoodtruckData::Save.new.call(FoodtruckData::Download.call)
+      data = FoodtruckData::Download.call
+      FoodtruckData::Save.new.call(data)
     end
   end
 end

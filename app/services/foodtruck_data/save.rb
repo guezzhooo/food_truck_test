@@ -21,7 +21,7 @@ module FoodtruckData
 
     def call(raw_data)
       data = parse(raw_data)
-      # validate(data)
+      validate(data)
       save(data)
     end
 
@@ -30,16 +30,15 @@ module FoodtruckData
     def parse(raw_data)
       CSV.parse(raw_data, headers: true)
     rescue RuntimeError => e
-      raise FoodtruckData::ParseError "Error parsing data: #{e.full_message}"
+      raise ParseError.new "Error parsing data: #{e.full_message}"
     end
 
-    # def validate(data)
-    #   FIELD_MAP.keys.each do |key|
-    #     raise FoodtruckData::FormatError "Invalid format: key '#{key}' not found" unless data.first.key?(key)
-    #   end
-    #
-    #   true
-    # end
+    def validate(data)
+      FIELD_MAP.keys.each do |key|
+        raise FormatError.new "Invalid format: key '#{key}' not found" unless data.first.key?(key)
+      end
+      true
+    end
 
     def save(data)
       data.each do |row|

@@ -1,11 +1,42 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# == Schema Information
+#
+# Table name: trucks
+#
+#  location_id          :integer          primary key
+#  name                 :string(255)
+#  facility_type        :string(255)
+#  location_description :string(255)
+#  address              :string(255)
+#  status               :string(255)
+#  food_items           :text(65535)
+#  latitude             :decimal(20, 10)
+#  longitude            :decimal(20, 10)
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#
 
 # This model initially had no columns defined. If you add columns to the
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  location_id: 111
+  name: Some Food Truck
+  facility_type: Push Cart
+  location_description: Around the corner
+  address: 123 Main St, San Francisco, CA 12345
+  status: APPROVED
+  food_items: Only the best!
+  latitude: 37.54321
+  longitude: -122.765
+
+two:
+  location_id: 222
+  name: Another Food Truck
+  facility_type: Food Truck
+  location_description: Down the street
+  address: 456 Main St, San Francisco, CA 12345
+  status: REJECTED
+  food_items: Tacos
+  latitude: 38.12345
+  longitude: -122.987
