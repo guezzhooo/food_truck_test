@@ -5,4 +5,3 @@ import "popper"
 import "bootstrap"
 
 import "./map"
-import "@fortawesome/fontawesome-free"
