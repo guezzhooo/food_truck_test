@@ -18,17 +18,17 @@ default: &default
 development:
   <<: *default
   database: foodtruck
-  username: Rails.application.credentials.dig(:database,:development,:username)
-  password: Rails.application.credentials.dig(:database,:development,:password)
+  username: <%= Rails.application.credentials.dig(:database,:development,:username) %>
+  password: <%= Rails.application.credentials.dig(:database,:development,:password) %>
 
 test:
   <<: *default
   database: foodtruck_test
-  username: Rails.application.credentials.dig(:database,:development,:username)
-  password: Rails.application.credentials.dig(:database,:development,:password)
+  username: <%= Rails.application.credentials.dig(:database,:development,:username) %>
+  password: <%= Rails.application.credentials.dig(:database,:development,:password) %>
 
 production:
   <<: *default
   database: foodtruc
-  username: Rails.application.credentials.dig(:database,:production,:username)
-  password: Rails.application.credentials.dig(:database,:production,:password)
+  username: <%= Rails.application.credentials.dig(:database,:production,:username) %>
+  password: <%= Rails.application.credentials.dig(:database,:production,:password) %>
