@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   get 'pages/index'
 
@@ -5,5 +7,5 @@ Rails.application.routes.draw do
     get 'truck_data/map'
   end
 
-  root "pages#index"
+  root 'pages#index'
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   class TruckDataController < ApplicationController
     def map

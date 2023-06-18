@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 module FoodtruckData
@@ -30,12 +32,12 @@ module FoodtruckData
     def parse(raw_data)
       CSV.parse(raw_data, headers: true)
     rescue RuntimeError => e
-      raise ParseError.new "Error parsing data: #{e.full_message}"
+      raise ParseError, "Error parsing data: #{e.full_message}"
     end
 
     def validate(data)
-      FIELD_MAP.keys.each do |key|
-        raise FormatError.new "Invalid format: key '#{key}' not found" unless data.first.key?(key)
+      FIELD_MAP.each_key do |key|
+        raise FormatError, "Invalid format: key '#{key}' not found" unless data.first.key?(key)
       end
       true
     end
@@ -43,13 +45,13 @@ module FoodtruckData
     def save(data)
       data.each do |row|
         # No point showing trucks that aren't approved; can't show on a map missing latitude/longitude
-        if row['Status'].downcase == 'approved' && !row['Latitude'].to_f.zero? && !row['Longitude'].to_f.zero?
-          truck = Truck.find_or_create_by(location_id: row['locationid'].to_i)
-          FIELD_MAP.each do |data_field, db_field|
-            truck[db_field] = row[data_field.to_s] unless data_field.to_sym == :locationid
-          end
-          truck.save!
+        next unless row['Status'].downcase == 'approved' && !row['Latitude'].to_f.zero? && !row['Longitude'].to_f.zero?
+
+        truck = Truck.find_or_create_by(location_id: row['locationid'].to_i)
+        FIELD_MAP.each do |data_field, db_field|
+          truck[db_field] = row[data_field.to_s] unless data_field.to_sym == :locationid
         end
+        truck.save!
       end
     end
   end

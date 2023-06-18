@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'net/http'
 
 module FoodtruckData
@@ -8,11 +10,9 @@ module FoodtruckData
     def self.call
       uri = URI(URL)
       response = Net::HTTP.get_response(uri)
-      if response.code == '200'
-        return response.body
-      else
-        raise DownloadError.new 'Unable to download foodtruck data'
-      end
+      return response.body if response.code == '200'
+
+      raise DownloadError, 'Unable to download foodtruck data'
     end
   end
 end
