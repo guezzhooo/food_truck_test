@@ -10,15 +10,15 @@ module FoodtruckData
 
     # Maps column names in CSV to Truck model
     FIELD_MAP = {
-      'locationid': 'location_id',
-      'Applicant': 'name',
-      'FacilityType': 'facility_type',
-      'LocationDescription': 'location_description',
-      'Address': 'address',
-      'Status': 'status',
-      'FoodItems': 'food_items',
-      'Latitude': 'latitude',
-      'Longitude': 'longitude'
+      locationid: 'location_id',
+      Applicant: 'name',
+      FacilityType: 'facility_type',
+      LocationDescription: 'location_description',
+      Address: 'address',
+      Status: 'status',
+      FoodItems: 'food_items',
+      Latitude: 'latitude',
+      Longitude: 'longitude'
     }.with_indifferent_access
 
     def call(raw_data)
@@ -44,8 +44,7 @@ module FoodtruckData
 
     def save(data)
       data.each do |row|
-        # No point showing trucks that aren't approved; can't show on a map missing latitude/longitude
-        next unless row['Status'].downcase == 'approved' && !row['Latitude'].to_f.zero? && !row['Longitude'].to_f.zero?
+        next unless should_save(row)
 
         truck = Truck.find_or_create_by(location_id: row['locationid'].to_i)
         FIELD_MAP.each do |data_field, db_field|
@@ -53,6 +52,11 @@ module FoodtruckData
         end
         truck.save!
       end
+    end
+
+    def should_save(row)
+      # No point showing trucks that aren't approved; can't show on a map missing latitude/longitude
+      row['Status'] == 'APPROVED' && !row['Latitude'].to_f.zero? && !row['Longitude'].to_f.zero?
     end
   end
 end

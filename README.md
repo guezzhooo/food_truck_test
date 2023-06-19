@@ -1,17 +1,15 @@
-# README
+# Food Truck Coding Challenge
+### John Lude
 
-This is John Lude's version of the Food Truck coding challenge
-
-The intended functionality is as follows:
-Created rake task `rake truckdata:download` to download the food truck data and install
+## Functionality
+* Created rake task `rake truckdata:download` to download the food truck data and install
 into a MySQL database (filtering only those with Status = "APPROVED".)  The rake task
 is idempotent.  Calling it after the data has changed will update the database rows.
-
-Created an API endpoint to download the important food truck data (Applicant = company,
-FacilityType, Latitude, Longitude, and LocationDescription, FoodItems) to use with the web UI.
-
-Created a basic web ui to show all of the food trucks on a Google Map. Hovering over the marker
-will show the name of the food truck.
+* Created an API endpoint to download the important food truck data (name,
+type, latitude, longitude, and location, and food) to use with the web UI.
+* Created a basic web ui to show all of the food trucks on a Google Map.
+  - Hovering over the marker will show the name of the food truck.
+  - Clicking on a marker will update the Name, Type, Addres, Location, and Food on the right.
 
 You can see a sample of it here: http://foodtruck.johnlude.com/
 
@@ -28,7 +26,8 @@ You can see a sample of it here: http://foodtruck.johnlude.com/
   - username: foodtruck
   - password: wripLt0bruw9
 * `rails db:migrate`
+* `rake truckdata:download` to populate the database
 
 ## Testing
-* Uses minitest
-* `rails test`
+* Uses minitest: `rails test`
+* Linting via `rubocop`
