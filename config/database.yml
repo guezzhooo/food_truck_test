@@ -29,6 +29,6 @@ test:
 
 production:
   <<: *default
-  database: foodtruc
+  database: johnlude_foodtruck
   username: <%= Rails.application.credentials.dig(:database,:production,:username) %>
   password: <%= Rails.application.credentials.dig(:database,:production,:password) %>
