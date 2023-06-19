@@ -14,8 +14,7 @@ gem 'sprockets-rails'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.5'
 
-# Use the Puma web server [https://github.com/puma/puma]
-gem 'puma', '~> 5.0'
+
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem 'importmap-rails'
@@ -59,6 +58,8 @@ gem 'net-http'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  # Use the Puma web server [https://github.com/puma/puma]
+  gem 'puma', '~> 5.0'
 end
 
 group :development do

@@ -14,18 +14,17 @@ Have a link on Google Map marker that points to a home page for the truck with L
 Notes for more documentation:
 
 * Ruby version: 2.7.8
-
+* Database: MySQL
 
 * System dependencies
 
-* Configuration
+## Setup locally
+* Clone the repo: `git clone git@github.com:guezzhooo/food_truck_test.git`
+* `bundle install`
+* Ensure you have a MySQL 8.0 server running.
+  - host: localhost
+  - database: foodtruck
+  - username: foodtruck
+  - password: wripLt0bruw9
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Deployment instructions
-
-* ...
+* `rails db:migrate`
