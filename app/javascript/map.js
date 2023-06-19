@@ -12,7 +12,7 @@ async function initMap() {
     map = new Map(document.getElementById("map"), {
         zoom: 12,
         center: position,
-        mapId: "DEMO_MAP_ID",
+        mapId: "DEMO_MAP_ID"
     });
 
     var xhr = new XMLHttpRequest();
@@ -25,7 +25,19 @@ async function initMap() {
                 const marker = new google.maps.Marker({
                     map: map,
                     position: { lat: truck['latitude'] - 0, lng: truck['longitude'] - 0 },
-                    title: truck['name']
+                    title: truck['name'],
+                    name: truck['name'],
+                    type: truck['facility_type'],
+                    address: truck['address'],
+                    location: truck['location_description'],
+                    food: truck['food_items']
+                });
+                marker.addListener('click', function() {
+                    document.getElementById('food-truck-name').innerHTML = this.name
+                    document.getElementById('food-truck-type').innerHTML = this.type
+                    document.getElementById('food-truck-address').innerHTML = this.address
+                    document.getElementById('food-truck-location').innerHTML = this.location
+                    document.getElementById('food-truck-food').innerHTML = this.food
                 });
             });
         } else {

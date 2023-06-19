@@ -10,11 +10,10 @@ is idempotent.  Calling it after the data has changed will update the database r
 Created an API endpoint to download the important food truck data (Applicant = company,
 FacilityType, Latitude, Longitude, and LocationDescription, FoodItems) to use with the web UI.
 
-Created a basic web ui to show all of the food trucks on a Google Map.
+Created a basic web ui to show all of the food trucks on a Google Map. Hovering over the marker
+will show the name of the food truck.
 
-The intent was to create a future version in which clicking the map marker would show either
-a pop up or new page with the location description and food items. Could also use facility type
-to show different icons on map.
+You can see a sample of it here: http://foodtruck.johnlude.com/
 
 ## System Dependencies
 * Ruby version: 2.7.8
